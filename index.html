@@ -206,12 +206,17 @@
                         mobileMenu.classList.add('hidden');
                     });
                 });
+
+                // Close mobile menu when clicking outside
+                document.addEventListener('click', (event) => {
+                    if (!mobileBtn.contains(event.target) && !mobileMenu.contains(event.target) && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
         
                 // 3. YOUR ORIGINAL SCROLL SPY LOGIC (Restored & Updated)
                 const navLinks = document.querySelectorAll('.nav-underline');
                 
-                // আমি তোমার সেকশনগুলোর ID অনুযায়ী লিস্ট বানালাম।
-                // Blog বাদ দিয়েছি, তাই Contact এখন 4 নম্বরে।
                 const sections = [
                     document.getElementById('home'),
                     document.getElementById('about'),
