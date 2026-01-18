@@ -102,103 +102,139 @@
         <div class="load-circle"><span class="one"></span></div>
     </div>
     <!-- End -->
+
     <!-- Header -->
     <header class="main-header">
-        <nav class="bg-gray-900 text-white shadow-lg">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex justify-between h-16 items-center">
-                    <!-- Brand -->
-                    <div class="flex-shrink-0 flex items-center">
-                        <a href="#" class="text-2xl font-bold tracking-tight">Mowmita</a>
-                    </div>
-                    <!-- Desktop Menu -->
-                    <div class="hidden md:flex space-x-6">
-                        <a href="#home" class="nav-underline hover:text-yellow-400 transition"
-                            data-scroll-nav="0">Home</a>
-                        <a href="#about" class="nav-underline hover:text-yellow-400 transition"
-                            data-scroll-nav="1">About</a>
-                        <a href="#services" class="nav-underline hover:text-yellow-400 transition"
-                            data-scroll-nav="2">Services</a>
-                        <a href="#work" class="nav-underline hover:text-yellow-400 transition"
-                            data-scroll-nav="3">Portfolio</a>
-
-                        <a href="#contactus" class="nav-underline hover:text-yellow-400 transition"
-                            data-scroll-nav="5">Contact</a>
-                    </div>
-                    <!-- Mobile menu button -->
-                    <div class="md:hidden flex items-center">
-                        <button id="mobile-menu-button" class="focus:outline-none">
-                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M4 6h16M4 12h16M4 18h16" />
-                            </svg>
-                        </button>
+        <header class="fixed w-full top-0 z-50 transition-all duration-300" id="main-header">
+            <nav class="border-b border-white/10 transition-all duration-300" id="navbar">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex justify-between h-20 items-center">
+                        
+                        <div class="flex-shrink-0 flex items-center">
+                            <a href="#" class="text-3xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-yellow-500 hover:opacity-80 transition">
+                                Mowmita
+                            </a>
+                        </div>
+        
+                        <div class="hidden md:flex space-x-8 items-center">
+                            <a href="#home" class="nav-underline text-sm uppercase tracking-wider font-medium text-gray-200 hover:text-white transition" data-scroll-nav="0">Home</a>
+                            <a href="#about" class="nav-underline text-sm uppercase tracking-wider font-medium text-gray-200 hover:text-white transition" data-scroll-nav="1">About</a>
+                            <a href="#services" class="nav-underline text-sm uppercase tracking-wider font-medium text-gray-200 hover:text-white transition" data-scroll-nav="2">Services</a>
+                            <a href="#work" class="nav-underline text-sm uppercase tracking-wider font-medium text-gray-200 hover:text-white transition" data-scroll-nav="3">Portfolio</a>
+                            <a href="#contactus" class="px-5 py-2 rounded-full bg-pink-600 hover:bg-pink-700 text-white text-sm font-semibold transition shadow-lg shadow-pink-500/30" data-scroll-nav="5">Contact Me</a>
+                        </div>
+        
+                        <div class="md:hidden flex items-center">
+                            <button id="mobile-menu-button" class="text-gray-200 hover:text-white focus:outline-none transition transform hover:scale-110">
+                                <svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="md:hidden hidden px-4 pb-4 bg-gray-900">
-                <a href="#home" class="nav-underline block py-2 hover:text-yellow-400 transition"
-                    data-scroll-nav="0">Home</a>
-                <a href="#about" class="nav-underline block py-2 hover:text-yellow-400 transition"
-                    data-scroll-nav="1">About</a>
-                <a href="#services" class="nav-underline block py-2 hover:text-yellow-400 transition"
-                    data-scroll-nav="2">Services</a>
-                <a href="#work" class="nav-underline block py-2 hover:text-yellow-400 transition"
-                    data-scroll-nav="3">Portfolio</a>
-                <a href="#blog" class="nav-underline block py-2 hover:text-yellow-400 transition"
-                    data-scroll-nav="4">Blog</a>
-                <a href="#contactus" class="nav-underline block py-2 hover:text-yellow-400 transition"
-                    data-scroll-nav="5">Contact</a>
-            </div>
-            <script>
-                // Simple mobile menu toggle and auto-close on link click
-                document.addEventListener('DOMContentLoaded', function () {
-                    const btn = document.getElementById('mobile-menu-button');
-                    const menu = document.getElementById('mobile-menu');
-                    btn.addEventListener('click', () => {
-                        menu.classList.toggle('hidden');
-                    });
-                    // Hide menu on link click
-                    menu.querySelectorAll('a').forEach(link => {
-                        link.addEventListener('click', () => {
-                            menu.classList.add('hidden');
-                        });
-                    });
-
-                    // Navbar underline active effect
-                    const navLinks = document.querySelectorAll('.nav-underline');
-                    const sections = [
-                        document.getElementById('home'),
-                        document.getElementById('about'),
-                        document.getElementById('services'),
-                        document.getElementById('work'),
-                        document.getElementById('blog'),
-                        document.getElementById('contactus')
-                    ];
-                    function onScroll() {
-                        let scrollPos = window.scrollY || window.pageYOffset;
-                        let found = false;
-                        for (let i = sections.length - 1; i >= 0; i--) {
-                            if (sections[i] && sections[i].offsetTop - 80 <= scrollPos) {
-                                navLinks.forEach(l => l.classList.remove('active'));
-                                document.querySelectorAll('.nav-underline[data-scroll-nav="' + i + '"]').forEach(l => l.classList.add('active'));
-                                found = true;
-                                break;
-                            }
-                        }
-                        if (!found) {
-                            navLinks.forEach(l => l.classList.remove('active'));
-                        }
+        
+                <div id="mobile-menu" class="md:hidden hidden bg-gray-900/95 backdrop-blur-xl border-t border-gray-800 absolute w-full left-0 top-20 shadow-2xl">
+                    <div class="px-4 py-4 space-y-2 flex flex-col items-center">
+                        <a href="#home" class="nav-underline block py-3 text-gray-300 hover:text-pink-500 font-medium transition" data-scroll-nav="0">Home</a>
+                        <a href="#about" class="nav-underline block py-3 text-gray-300 hover:text-pink-500 font-medium transition" data-scroll-nav="1">About</a>
+                        <a href="#services" class="nav-underline block py-3 text-gray-300 hover:text-pink-500 font-medium transition" data-scroll-nav="2">Services</a>
+                        <a href="#work" class="nav-underline block py-3 text-gray-300 hover:text-pink-500 font-medium transition" data-scroll-nav="3">Portfolio</a>
+                        <a href="#contactus" class="block py-3 text-pink-500 font-bold transition" data-scroll-nav="5">Contact Me</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        
+        <style>
+            /* Glass Effect Class (Applied via JS on Scroll) */
+            .nav-scrolled {
+                background: rgba(15, 23, 42, 0.85); /* Dark blue-gray with opacity */
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            }
+        
+            /* Initial Transparent State */
+            #navbar {
+                background: transparent;
+            }
+        
+            /* Underline Animation */
+            .nav-underline {
+                position: relative;
+                display: inline-block;
+            }
+            
+            .nav-underline::after {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 2px;
+                bottom: -2px;
+                left: 50%;
+                background: linear-gradient(90deg, #ec4899, #eab308); /* Pink to Yellow */
+                transition: width 0.3s ease, left 0.3s ease;
+            }
+        
+            .nav-underline:hover::after,
+            .nav-underline.active::after {
+                width: 100%;
+                left: 0;
+            }
+        </style>
+        
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const navbar = document.getElementById('navbar');
+                const mobileBtn = document.getElementById('mobile-menu-button');
+                const mobileMenu = document.getElementById('mobile-menu');
+                const navLinks = document.querySelectorAll('.nav-underline');
+        
+                // 1. Scroll Effect (Glassmorphism)
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 50) {
+                        navbar.classList.add('nav-scrolled', 'py-0');
+                    } else {
+                        navbar.classList.remove('nav-scrolled', 'py-0');
                     }
-                    window.addEventListener('scroll', onScroll);
-                    onScroll();
                 });
-            </script>
-        </nav>
+        
+                // 2. Mobile Menu Toggle
+                mobileBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+        
+                // 3. Close Mobile Menu when clicking a link
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                    });
+                });
+        
+                // 4. Active Link Highlight on Scroll
+                const sections = document.querySelectorAll('section');
+                
+                function onScroll() {
+                    let scrollPos = window.scrollY || window.pageYOffset;
+                    
+                    sections.forEach((section) => {
+                        if (section.offsetTop - 100 <= scrollPos && (section.offsetTop + section.offsetHeight) > scrollPos) {
+                            navLinks.forEach((a) => {
+                                a.classList.remove('active');
+                                if (section.getAttribute('id') === a.getAttribute('href').substring(1)) {
+                                    a.classList.add('active');
+                                }
+                            });
+                        }
+                    });
+                }
+                window.addEventListener('scroll', onScroll);
+            });
+        </script>
     </header>
     <!-- End Header -->
+
     <main>
         <!-- section -->
         <section id="home" data-scroll-index="0" class="home-banner">
@@ -381,6 +417,7 @@
         </section>
 
         <!-- End section -->
+
         <!-- About Us -->
         <section id="about" data-scroll-index="1" class="section about-section dark-bg-1">
             <div class="w-full flex justify-center mb-6">
