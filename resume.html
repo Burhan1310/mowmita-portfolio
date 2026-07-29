@@ -1,306 +1,319 @@
-<!DOCTYPE html>
-<html lang="zxx">
+\documentclass[11pt, letterpaper]{article}
 
-<head>
-    <!-- metas -->
-    <meta charset="utf-8">
-    <meta name="author" content="themepaa">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="keywords" content="Zemo - Portfolio Template">
-    <meta name="description" content="Zemo - Portfolio Template">
-    <!-- Bootstrap CSS -->
-    <link href="static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- theme css -->
-    <link href="static/css/dark/style.css" rel="stylesheet">
-    <link href="static/plugin/bootstrap/icons/bootstrap-icons.css" rel="stylesheet">
-    <style>
-        /* Navbar underline effect */
-        .nav-underline {
-            position: relative;
-            display: inline-block;
-        }
+% ===================== Packages =====================
+\usepackage[
+    ignoreheadfoot,
+    top=2 cm,
+    bottom=2 cm,
+    left=2 cm,
+    right=2 cm,
+    footskip=1.0 cm
+]{geometry}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage[explicit]{titlesec}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage[dvipsnames]{xcolor}
+\definecolor{primaryColor}{RGB}{0, 79, 144}
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+\usepackage{amsmath}
+\usepackage{graphicx} % for including images
+\usepackage[
+    pdftitle={Mowmita Akter Nipu CV},
+    pdfauthor={Mowmita Akter Nipu},
+    pdfcreator={LaTeX with RenderCV},
+    colorlinks=true,
+    urlcolor=primaryColor
+]{hyperref}
+\usepackage[pscoord]{eso-pic}
+\usepackage{calc}
+\usepackage{bookmark}
+\usepackage{lastpage}
+\usepackage{changepage}
+\usepackage{paracol}
+\usepackage{ifthen}
+\usepackage{needspace}
+\usepackage{iftex}
 
-        .nav-underline.active::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: -4px;
-            height: 3px;
-            background: linear-gradient(90deg, #e11d48 60%, #fbbf24 100%);
-            border-radius: 2px;
-            transition: all 0.3s cubic-bezier(.4, 0, .2, 1);
-        }
+% Ensure that PDF is machine readable
+\ifPDFTeX
+    \input{glyphtounicode}
+    \pdfgentounicode=1
+    \usepackage[T1]{fontenc}
+    \usepackage[utf8]{inputenc}
+    \usepackage{lmodern}
+\fi
 
-        .nav-underline::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            right: 50%;
-            bottom: -4px;
-            height: 3px;
-            background: transparent;
-            border-radius: 2px;
-            transition: all 0.3s cubic-bezier(.4, 0, .2, 1);
-        }
+\usepackage[default, type1]{sourcesanspro}
 
-        @media (max-width: 991.98px) {
+% ===================== Page Settings =====================
+\AtBeginEnvironment{adjustwidth}{\partopsep0pt}
+\pagestyle{empty}
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{0pt}
+\setlength{\topskip}{0pt}
+\setlength{\columnsep}{0.15cm}
 
-            .nav-underline,
-            .nav-underline.active {
-                display: inline-block;
-            }
+\makeatletter
+\let\ps@customFooterStyle\ps@plain
+\patchcmd{\ps@customFooterStyle}{\thepage}{
+    \color{gray}\textit{\small Mowmita Akter Nipu - Page \thepage{} of \pageref*{LastPage}}
+}{}{}
+\makeatother
+\pagestyle{customFooterStyle}
 
-            .nav-underline.active::after {
-                left: 0;
-                right: auto;
-                width: 100%;
-                min-width: 0;
-                max-width: 100%;
-            }
+% ===================== Section Formatting =====================
+\titleformat{\section}{
+    \needspace{4\baselineskip}
+    \Large\color{primaryColor}
+}{}{
+}{
+    \textbf{#1}\hspace{0.15cm}\titlerule[0.8pt]\hspace{-0.1cm}
+}[]
+\titlespacing{\section}{-1pt}{0.3cm}{0.2cm}
 
-            .nav-underline::after {
-                left: 50%;
-                right: auto;
-                width: 0;
-            }
-        }
+% ===================== Environments =====================
+\newenvironment{highlights}{
+    \begin{itemize}[
+        topsep=2pt, parsep=0pt, partopsep=0pt, itemsep=2pt,
+        leftmargin=0.35cm
+    ]\small
+}{
+    \end{itemize}
+}
 
-        @media (max-width: 575.98px) {
+\newenvironment{highlightsforbulletentries}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=10pt
+    ]
+}{
+    \end{itemize}
+}
 
-            .nav-underline,
-            .nav-underline.active {
-                display: inline-block;
-            }
+% ✅ Fixed version
+\newenvironment{onecolentry}{
+    \begin{adjustwidth}{0.2cm}{0.2cm}
+}{
+    \end{adjustwidth}
+}
 
-            .nav-underline.active::after {
-                left: 0;
-                right: auto;
-                width: 100%;
-                min-width: 0;
-                max-width: 100%;
-            }
+\newenvironment{twocolentry}[2][]{
+    \onecolentry
+    \def\secondColumn{#2}
+    \setcolumnwidth{\fill, 3.2cm}
+    \begin{paracol}{2}
+}{
+    \switchcolumn \raggedleft \secondColumn
+    \end{paracol}
+    \endonecolentry
+}
 
-            .nav-underline::after {
-                left: 50%;
-                right: auto;
-                width: 0;
-            }
-        }
-    </style>
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="static/favicon.ico">
-    <!-- title -->
-    <title>Mowmita Portfolio - Resume</title>
-</head>
-<!-- Body Start -->
+\newenvironment{threecolentry}[3][]{
+    \onecolentry
+    \def\thirdColumn{#3}
+    \setcolumnwidth{1.7cm, \fill, 2.8cm}
+    \begin{paracol}{3}
+    {\raggedright #2} \switchcolumn
+}{
+    \switchcolumn \raggedleft \thirdColumn
+    \end{paracol}
+    \endonecolentry
+}
 
-<body class="dark-bg">
-    <!-- Header -->
-    <header class="main-header">
-        <header class="fixed w-full top-0 z-50 transition-all duration-300" id="main-header">
-            <nav class="border-b border-white/5 transition-all duration-300" id="navbar">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex justify-between h-20 items-center">
-                        
-                        <div class="flex-shrink-0 flex items-center">
-                            <a href="index.html" class="text-3xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-yellow-500 hover:opacity-80 transition">
-                                Mowmita
-                            </a>
-                        </div>
-        
-                        <div class="hidden md:flex space-x-8 items-center">
-                            <a href="index.html#home" class="nav-underline text-sm uppercase tracking-wider font-medium text-gray-300 hover:text-white transition">Home</a>
-                            <a href="index.html#about" class="nav-underline text-sm uppercase tracking-wider font-medium text-gray-300 hover:text-white transition">About</a>
-                            <a href="index.html#services" class="nav-underline text-sm uppercase tracking-wider font-medium text-gray-300 hover:text-white transition">Services</a>
-                            <a href="index.html#work" class="nav-underline text-sm uppercase tracking-wider font-medium text-gray-300 hover:text-white transition">Portfolio</a>
-                            
-                            <a href="index.html#contactus" class="px-6 py-2.5 rounded-full bg-gradient-to-r from-pink-600 to-yellow-500 hover:from-pink-500 hover:to-yellow-400 text-white text-sm font-bold shadow-lg shadow-pink-500/30 transform hover:-translate-y-0.5 transition-all duration-300 nav-underline-btn">
-                                Contact Me
-                            </a>
-                        </div>
-        
-                        <div class="md:hidden flex items-center">
-                            <button id="mobile-menu-button" class="text-gray-200 hover:text-pink-500 focus:outline-none p-2 rounded-md transition-colors">
-                                <svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-        
-                <div id="mobile-menu" class="md:hidden hidden bg-gray-900/95 backdrop-blur-xl border-t border-gray-800 absolute w-full left-0 top-20 shadow-2xl transition-all duration-300">
-                    <div class="px-6 py-6 space-y-4 flex flex-col items-center">
-                        <a href="index.html#home" class="nav-underline block text-lg font-medium text-gray-300 hover:text-white transition">Home</a>
-                        <a href="index.html#about" class="nav-underline block text-lg font-medium text-gray-300 hover:text-white transition">About</a>
-                        <a href="index.html#services" class="nav-underline block text-lg font-medium text-gray-300 hover:text-white transition">Services</a>
-                        <a href="index.html#work" class="nav-underline block text-lg font-medium text-gray-300 hover:text-white transition">Portfolio</a>
-                        
-                        <a href="index.html#contactus" class="w-full text-center mt-4 px-6 py-3 rounded-full bg-gradient-to-r from-pink-600 to-yellow-500 text-white font-bold text-lg shadow-lg active:scale-95 transition-transform">
-                            Contact Me
-                        </a>
-                    </div>
-                </div>
-            </nav>
-        </header>
-        
-        <style>
-            /* Glass Effect */
-            .nav-scrolled {
-                background: rgba(15, 23, 42, 0.95);
-                backdrop-filter: blur(12px);
-                -webkit-backdrop-filter: blur(12px);
-                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            }
-            #navbar { background: transparent; }
-        
-            /* Nav Underline Animation */
-            .nav-underline { position: relative; display: inline-block; }
+\newenvironment{header}{
+    \setlength{\topsep}{0pt}\par\kern\topsep\color{primaryColor}\linespread{1.5}
+}{
+    \par\kern\topsep
+}
+
+% ===================== Footer =====================
+\newcommand{\placelastupdatedtext}{
+  \AddToShipoutPictureFG*{
+    \put(
+        \LenToUnit{\paperwidth-2 cm-0.2 cm+0.05cm},
+        \LenToUnit{\paperheight-1.0 cm}
+    ){\vtop{{\null}\makebox[0pt][c]{
+        \small\color{gray}\textit{Last updated in August 2025}\hspace{\widthof{Last updated in August 2025}}
+    }}}%
+  }%
+}
+
+\let\hrefWithoutArrow\href
+\renewcommand{\href}[2]{\hrefWithoutArrow{#1}{\ifthenelse{\equal{#2}{}}{ }{#2 }\raisebox{.15ex}{\footnotesize \faExternalLink*}}}
+
+% ===================== Document =====================
+\begin{document}
+\placelastupdatedtext
+
+% ---------- Header with Photo ----------
+\begin{header}
+\begin{minipage}{0.75\textwidth}
+    \fontsize{30 pt}{30 pt}\textbf{Mowmita Akter Nipu}
+    
+    \fontsize{30 pt}{30 pt}\large{3D Fashion Designer}
+    
+    \vspace{0.3 cm}
+
+    \normalsize
+    \mbox{{\footnotesize\faMapMarker*}\hspace*{0.13cm}Mazar Road, Mirpur 1, Dhaka - 1216}%
+    \kern 0.25 cm%
+    \mbox{\hrefWithoutArrow{mailto:mowmita.nipu14@gmail.com}{{\footnotesize\faEnvelope[regular]}\hspace*{0.13cm}mowmita.nipu14@gmail.com}}%
+    \kern 0.25 cm%
+    \\
+    \mbox{\hrefWithoutArrow{tel:+8801314-557057}
+    {{\footnotesize\faPhone*}\hspace*{0.13cm}+8801314-557057}}%
+    \kern 0.25 cm%
+    \mbox{\hrefWithoutArrow{https://www.LinkedIn.com/in/mowmita-nipu-3a0a202b3/}
+    {{\footnotesize\faLinkedinIn}\hspace*{0.13cm}mowmita.nipu}}%
+    \kern 0.25 cm%
+    \mbox{\hrefWithoutArrow{https://mowmita-portfolio.vercel.app/}
+    {{\footnotesize\faGlobe}\hspace*{0.13cm}Portfolio}}%
+\end{minipage}%
+\hfill
+\begin{minipage}{0.20\textwidth}
+    \begin{flushright}
+\begin{tikzpicture}
+    % create a circular crop of radius 1.4cm
+    \clip (0,0) circle (1.4cm);
+    \node at (0,0) {\includegraphics[width=2.8cm]{mowmita.jpg}};
+\end{tikzpicture}
+\end{flushright}
+
+\end{minipage}
+\end{header}
+
+\vspace{0.3 cm - 0.3 cm}
+
+% ===================== About Myself =====================
+\section{About Myself}
+\begin{onecolentry}
+A passionate and innovative 3D Fashion Designer with over five months of professional experience at Ingenitex. Skilled in creating high-quality 3D garment prototypes using CLO 3D and Adobe tools, with strong knowledge in digital pattern making, fabric analysis, and trend research. Dedicated to blending creativity and technology to design sustainable, market-ready fashion solutions and seeking to contribute to a forward-thinking fashion or apparel design company.
+\end{onecolentry}
+
+% ===================== Education =====================
+\section{Education}
+
+\begin{threecolentry}{\textbf{BA (HONS)}}{\footnotesize{Jan 2020 – June 2024}}
+    \textbf{Shanto-Mariam University of Creative Technology}, Department of Fashion Design \& Technology
+    \begin{highlights}
+        \item GPA: \textbf{3.40}/4.0 
+    \end{highlights}
+   
+\end{threecolentry}
+
+\begin{threecolentry}{\textbf{HSC}}{\footnotesize{2019}}
+    \textbf{Milestone College, Dhaka}, Group: Business Studies, Dhaka Board
+    \begin{highlights}
+        \item GPA: \textbf{3.87}/5.00
+    \end{highlights}
+\end{threecolentry}
+
+\begin{threecolentry}{\textbf{SSC}}{\footnotesize{2017}}
+    \textbf{Ramnarayanpur High School, Noakhali}, Group: Business Studies, Cumilla Board
+    \begin{highlights}
+        \item GPA: \textbf{3.50}/5.00
+    \end{highlights}
+\end{threecolentry}
+
+
+% ===================== Technical Skills =====================
+\section{Technical Skills}
+\begin{highlights}
+    \begin{onecolentry}
+        \textbf{Fashion Design \& Styling:} Digital Pattern Making, Fabric \& Trend Analysis, Fashion Illustration, Draping Techniques, Garment Construction
+    \end{onecolentry}
+
+    \begin{onecolentry}
+        \textbf{Software Proficiency:} CLO 3D, Adobe Illustrator, Adobe Photoshop, Adobe Premiere Pro
+    \end{onecolentry}
+
+    \begin{onecolentry}
+        \textbf{Microsoft Office Tools:} Word, Excel, PowerPoint
+    \end{onecolentry}
+
+    \begin{onecolentry}
+        \textbf{Additional Skills:} Technical Flat Sketching, Trend Forecasting, Material Simulation, Tech Pack Preparation, Product Visualization
+    \end{onecolentry}
+\end{highlights}
+
+
+% ===================== Experiences =====================
+    \section{Experience}
+
+        \begin{twocolentry}{\footnotesize{
+            Shimul Tola, Jamgora, Ashulia
             
-            .nav-underline::after {
-                content: ''; position: absolute; width: 0; height: 3px; bottom: -4px; left: 0; right: 0;
-                background: linear-gradient(90deg, #ec4899, #eab308); /* Pink to Yellow */
-                transition: width 0.3s ease;
-                margin: 0 auto;
-            }
-        
-            /* Hover State */
-            .nav-underline:hover::after { width: 100%; }
-        
-            /* Active State (For Scroll Spy) - This is what was missing */
-            .nav-underline.active { color: #ffffff !important; }
-            .nav-underline.active::after { width: 100%; }
-        </style>
-        
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const navbar = document.getElementById('navbar');
-                const mobileBtn = document.getElementById('mobile-menu-button');
-                const mobileMenu = document.getElementById('mobile-menu');
-                
-                // 1. Navbar Background Change on Scroll
-                window.addEventListener('scroll', function() {
-                    if (window.scrollY > 50) {
-                        navbar.classList.add('nav-scrolled');
-                    } else {
-                        navbar.classList.remove('nav-scrolled');
-                    }
-                });
-        
-                // 2. Mobile Menu Logic
-                mobileBtn.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
-                });
-                
-                mobileMenu.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        mobileMenu.classList.add('hidden');
-                    });
-                });
+        Aug 2025 – Ongoing
+        }}
+            \textbf{Ingenitex}, Junior Fashion Designer
+            \begin{itemize}
+                \item Design and develop creative garment concepts for \textbf{activewear, knitwear, 
+                sportswear and lingerie} product lines.
+                \item Create detailed \textbf{digital garment prototypes} and visual presentations using \textbf{CLO 3D} and Adobe Illustrator.
+                \item Collaborate with pattern makers and production teams to ensure accurate fit, style, and technical specifications.
+                \item Conduct fabric selection, color coordination, and trend analysis to align collections with seasonal directions.
+                \item Streamlined design-to-sample workflow by integrating digital visualization into the development process.
+            \end{itemize}
+        \end{twocolentry}
 
-                // Close mobile menu when clicking outside
-                document.addEventListener('click', (event) => {
-                    if (!mobileBtn.contains(event.target) && !mobileMenu.contains(event.target) && !mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
-                    }
-                });
-            });
-        </script>
-    </header>
-    <!-- End Header -->
+\vspace{0.2 cm}
 
-    <main style="padding-top: 80px; min-height: 100vh; display: flex; flex-direction: column;">
-        <section class="resume-wrapper" style="flex: 1; display: flex; flex-direction: column; background-color: #0f172a; position: relative;">
-            
-             <div class="container mx-auto px-4 py-3 flex justify-between items-center bg-slate-800/50 backdrop-blur-sm border-b border-white/5 shrink-0">
-                <h1 class="text-xl font-bold text-white">My Resume</h1>
-                <a href="static/resume.pdf" download class="inline-flex items-center gap-2 bg-gradient-to-r from-pink-600 to-yellow-500 hover:from-pink-500 hover:to-yellow-400 text-white px-4 py-2 rounded-full text-sm font-semibold transition-all shadow-lg hover:shadow-pink-500/25">
-                    <i class="bi bi-download"></i> Download PDF
-                </a>
-             </div>
 
-             <div class="w-full bg-slate-900 flex justify-center bg-gray-900" style="height: calc(100vh - 140px); min-height: 600px;">
-                <object data="static/resume.pdf#view=FitH" type="application/pdf" class="w-full md:w-[70%] h-full border-0 shadow-2xl">
-                    <div class="flex flex-col items-center justify-center h-full text-center p-8">
-                        <i class="bi bi-file-earmark-pdf text-6xl text-slate-600 mb-4"></i>
-                        <p class="text-slate-300 text-lg mb-4">Your browser doesn't support embedding PDF files.</p>
-                        <a href="static/resume.pdf" class="text-pink-500 hover:text-pink-400 font-semibold underline">Download the resume to view it</a>
-                    </div>
-                </object>
-             </div>
 
-        </section>
-    </main>
+\vspace{0.2 cm}
 
-    <!-- Footer -->
-    <footer class="bg-[#0f172a] text-slate-300 border-t border-slate-800 relative overflow-hidden">
+\begin{twocolentry}{\footnotesize{
+    Dhaka, Bangladesh
     
-        <div class="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.03] pointer-events-none"></div>
-    
-        <div class="container mx-auto px-4 pt-12 pb-8 relative z-10">
-            
-            <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 pb-8 border-b border-slate-800">
-                
-                <div class="text-center md:text-left md:w-1/3">
-                    <a href="#" class="inline-block mb-2 group">
-                        <span class="text-2xl font-extrabold text-white tracking-tight group-hover:text-orange-400 transition-colors">
-                            Mowmita Akter <span class="text-orange-500">Nipu</span>
-                        </span>
-                    </a>
-                    <p class="text-sm text-slate-400 font-medium tracking-wide uppercase">Fashion Designer & Makeup Artist</p>
-                </div>
-    
-                <div class="text-center md:w-1/3">
-                    <div class="flex justify-center gap-4">
-                        <a href="mailto:mowmita.nipu14@gmail.com" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-orange-500 hover:text-white hover:-translate-y-1 transition-all duration-300" aria-label="Email">
-                            <i class="bi bi-envelope-fill"></i>
-                        </a>
-                        <a href="https://www.facebook.com/mowmita.nipu.10" target="_blank" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-[#1877F2] hover:text-white hover:-translate-y-1 transition-all duration-300" aria-label="Facebook">
-                            <i class="bi bi-facebook"></i>
-                        </a>
-                        <a href="https://wa.me/8801314557057" target="_blank" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-[#25D366] hover:text-white hover:-translate-y-1 transition-all duration-300" aria-label="WhatsApp">
-                            <i class="bi bi-whatsapp"></i>
-                        </a>
-                        <a href="https://www.instagram.com/mowmita_nipu?igsh=eWFnbTE4bXN5eHdy" target="_blank" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-[#E4405F] hover:text-white hover:-translate-y-1 transition-all duration-300" aria-label="Instagram">
-                            <i class="bi bi-instagram"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/mowmita-nipu-3a0a202b3/" target="_blank" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-[#0A66C2] hover:text-white hover:-translate-y-1 transition-all duration-300" aria-label="LinkedIn">
-                            <i class="bi bi-linkedin"></i>
-                        </a>
-                    </div>
-                </div>
-    
-                <div class="text-center md:text-right md:w-1/3 space-y-2">
-                    <div class="text-sm text-slate-400 hover:text-white transition-colors cursor-pointer group">
-                        <i class="bi bi-geo-alt-fill text-orange-500 mr-2 group-hover:scale-110 inline-block transition-transform"></i>
-                        <span>Mirpur-1, Dhaka-1216, BD</span>
-                    </div>
-                    <div class="text-sm text-slate-400">
-                        <i class="bi bi-telephone-fill text-orange-500 mr-2"></i>
-                        <a href="tel:+8801314557057" class="hover:text-orange-400 transition-colors font-medium">+880 1314-557057</a>
-                    </div>
-                </div>
-    
-            </div>
-    
-            <div class="pt-6 text-center">
-                <p class="text-xs text-slate-500 font-medium">
-                    &copy; 2025 <span class="text-orange-400">Mowmita Akter Nipu</span>. All rights reserved. 
-                    <span class="mx-2 text-slate-700">|</span> 
-                    Designed with <i class="bi bi-heart-fill text-red-500 mx-1 animate-pulse"></i> & Creativity
-                </p>
-            </div>
-    
-        </div>
-    </footer>
-    <!-- End Footer -->
+    4 Months
+}}
+    \textbf{Abanti Color Tex (Crony Group)}, Fashion Design Intern
+    \begin{itemize}
+        \item Supported the design team in \textbf{fabric sourcing}, \textbf{trend research}, and \textbf{sample development}.
+        \item Assisted in \textbf{pattern making}, \textbf{garment fitting}, and technical presentation under senior designers.
+        \item Gained hands-on experience in \textbf{fashion production processes} and \textbf{quality control}.
+    \end{itemize}
+\end{twocolentry}
 
-    <script src="static/js/jquery-3.5.1.min.js"></script>
-    <script src="static/plugin/bootstrap/js/bootstrap.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-</body>
+% =================== Creative Expertise ===================
+\section{Creative Expertise}
+\begin{highlights}
+    \begin{onecolentry}
+        \textbf{Makeup Artistry:} Bridal \& Editorial Makeup, Airbrush Technique, Skin Prep \& Contouring
+    \end{onecolentry}
+\end{highlights}
 
-</html>
+
+% ================= Professional Training =================
+\section{Professional Training}
+\begin{twocolentry}{\footnotesize{Jun 2025 - Aug 2025}}
+    \textbf{3D Fashion Design}, Skills for Industry Competitiveness and Innovation Program (SICIP)
+
+    \begin{itemize}
+        \item Comprehensive hands-on training on \textbf{CLO 3D}, digital garment visualization, and pattern development.
+        \item Focused on material simulation, fabric physics, and real-time rendering for apparel design.
+        \item Enhanced skills in \textbf{virtual fitting}, \textbf{3D draping}, and digital prototyping workflows.
+      \end{itemize}
+\end{twocolentry}
+
+% ===================== References =====================
+\section{References}
+\begin{onecolentry}
+\textbf{Lina Jahangir} \\
+Asst. Professor and Program Coordinator of MAFD 
+
+Mobile: \hrefWithoutArrow{tel:+8801796260430}{+8801796260430} \vspace{0.3cm}  
+
+
+\end{onecolentry}
+
+
+
+
+\end{document}
